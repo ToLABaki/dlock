@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # Configuration, must match the configuration in doorlockd.py
+
 port = "/dev/ttyUSB2"   # ttyUSB port to connect to
 SerialOpen  = 0x05      # Byte to open the door
 SerialAck   = 0x06      # Byte received when acknowledging receipt
@@ -20,5 +21,13 @@ while(1):
         if ( RCPT == SerialAck ):
             print "Arduino Acknowledged Receipt"
             RCPT = sta.read()
+            if ( RCPT == SerialOk ):
+                print "The door is allegedly open"
+            elif ( RCPT == SerialNo ):
+                print "Arduino could not open the door"
+            else:
+                print "Arduino Protocol Mismatch"
         elif ( RCPT == SerialNack ):
             print "Arduino reported decoding issue"
+        else:
+            print "Arduino does not reply. (Protocol mismatch)"
