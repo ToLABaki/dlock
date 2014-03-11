@@ -4,7 +4,7 @@
 */
 
 /* Configuration */
-static const int StepsToRotate = 1600; /* How many steps back and FoRTH to move */
+static const int StepsToRotate = 700; /* How many steps back and FoRTH to move */
 static const int SerialOpen = 0x05;    /* Serial byte to open the door at */
 static const int SerialAck = 0x06;     /* Serial byte to send on packet receipt */
 static const int SerialNack = 0x15;    /* Serial byte to send on packet decoding issue */
