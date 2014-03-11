@@ -14,6 +14,7 @@ static const int SerialNo = 0x12;      /* Serial byte to send upon failure */
 /* Pins */
 static const int Step = 2;   /* The pin to send a step pulse */
 static const int Dir = 3;    /* The pin to send a direction logical value */
+static const int Enable = 4; /* The pin to NOT enable the chip */
 static const int Error = 5;  /* The pin to send a blink pattern on error */
 static const int Switch = 6; /* The pin for the switch inside ToLABaki */
 
@@ -29,8 +30,8 @@ static const int Switch = 6; /* The pin for the switch inside ToLABaki */
 #define CCLOCKWISE 0
 
 /* Declare all variables */
-int state = CLOSED;
-int sBuff = 0;
+int state = CLOSED;  /* State of the door */
+int sBuff = 0;       /* Serial Buffer */
 
 /* Set appropriate pin modes */
 void setup(){
@@ -38,7 +39,10 @@ void setup(){
   pinMode(Dir, OUTPUT);
   pinMode(Error, OUTPUT);
   pinMode(Switch, INPUT);
+  pinMode(Enable, OUTPUT);
+  digitalWrite(Enable, LOW);
   Serial.begin(9600);      /* Initialize Serial connection with a computer */
+  delay(100);
 }
 
 /* Run the actual code to use sensors for open and close */
