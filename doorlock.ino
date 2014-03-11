@@ -25,8 +25,8 @@ static const int Switch = 6; /* The pin for the switch inside ToLABaki */
 /* Define some easy names */
 #define OPEN       1
 #define CLOSED     0
-#define CLOCKWISE  1
-#define CCLOCKWISE 0
+#define CLOCKWISE  LOW
+#define CCLOCKWISE HIGH
 
 /* Declare all variables */
 int state = CLOSED;  /* State of the door */
@@ -123,13 +123,8 @@ void displayError(){
 
 /* Spin the motor a known amount of times */
 void rotateMotor(int direction){
-    if(direction == CLOCKWISE){
-        digitalWrite(Dir, LOW);
-        sendRotatePulse();
-    }else{
-        digitalWrite(Dir, HIGH);
-        sendRotatePulse();
-    }
+    digitalWrite(Dir, direction);
+    sendRotatePulse();
 }
 
 void sendRotatePulse(){
