@@ -1,4 +1,5 @@
-#Configuration
+#!/usr/bin/env python
+# Configuration, must match the configuration in doorlockd.py
 port = "/dev/ttyUSB2"   # ttyUSB port to connect to
 SerialOpen  = 0x05      # Byte to open the door
 SerialAck   = 0x06      # Byte received when acknowledging receipt
@@ -21,4 +22,3 @@ while(1):
             RCPT = sta.read()
         elif ( RCPT == SerialNack ):
             print "Arduino reported decoding issue"
-        
