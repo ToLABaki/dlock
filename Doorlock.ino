@@ -141,4 +141,8 @@ void sendRotatePulse(){
 /* tab-width: 4 */
 /* c-basic-offset: 4 */
 /* indent-tabs-mode: nil */
+<<<<<<< HEAD
 /* End: */
+=======
+/* End: */
+>>>>>>> FETCH_HEAD

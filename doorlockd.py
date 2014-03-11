@@ -30,4 +30,8 @@ while(1):
         elif ( RCPT == SerialNack ):
             print "Arduino reported decoding issue"
         else:
+<<<<<<< HEAD
             print "Arduino does not reply. (Protocol mismatch)"
+=======
+            print "Arduino does not reply. (Protocol mismatch)"
+>>>>>>> FETCH_HEAD
