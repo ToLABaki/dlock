@@ -5,6 +5,11 @@
 
 /* Configuration */
 static const int StepsToRotate = 1600; /* How many steps back and FoRTH to move */
+static const int SerialOpen = 0x05;    /* Serial byte to open the door at */
+static const int SerialAck = 0x06;     /* Serial byte to send on packet receipt */
+static const int SerialNack = 0x15;    /* Serial byte to send on packet decoding issue */
+static const int SerialOk = 0x11;      /* Serial byte to send upon success */
+static const int SerialNo = 0x12;      /* Serial byte to send upon failure */
 
 /* Pins */
 static const int Step = 2;   /* The pin to send a step pulse */
@@ -38,8 +43,17 @@ void setup(){
 
 /* Run the actual code to use sensors for open and close */
 void loop(){
-    if (Serial.available() > 0){  /* Full Sensoring */
-        sBuff = Serial.read();  /* Read one byte from the Serial port */
+    if (Serial.available() > 0){      /* Full Sensoring */
+        sBuff = Serial.read();        /* Read one byte from the Serial port */
+        if(sBuff == SerialOpen){
+             if(openDoor()){
+                Serial.write(SerialOk); 
+             }else{
+                Serial.write(SerialNo);
+             }
+        }else{
+             Serial.write(SerialNack); 
+        }
     }
     if(digitalRead(Switch) == HIGH){  /* Door opens using internal switch */
         openDoor();
