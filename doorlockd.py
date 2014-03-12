@@ -13,8 +13,7 @@ sta = serial.Serial(port, 9600)   #TTY Port Connection
 
 while(1):
     print ("1] Open Door\n")
-    c = raw_input("> ")
-    c = int(c)
+    c = int(raw_input("> "))
     if(c==1):
         sta.write(SerialOpen)
         RCPT = sta.read()
@@ -30,8 +29,4 @@ while(1):
         elif ( RCPT == SerialNack ):
             print "Arduino reported decoding issue"
         else:
-<<<<<<< HEAD
             print "Arduino does not reply. (Protocol mismatch)"
-=======
-            print "Arduino does not reply. (Protocol mismatch)"
->>>>>>> FETCH_HEAD
